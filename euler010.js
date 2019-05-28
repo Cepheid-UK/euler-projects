@@ -44,3 +44,5 @@ var sumOfPrimes = 0
 primes.forEach(value => {
     sumOfPrimes += value;
 });
+
+// Learned a lot about prime sieves from this and problem 7. For much larger primes, a more efficient sieve would be better. I expect I'll see a problem later on that requires this.

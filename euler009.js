@@ -24,3 +24,5 @@ for (m=2; m<25; m++) {
             
     }
 }
+
+// There are some quite interesting visualisations and implications to pythagorean triples. May consider using them for generating predictable numbers for terrain generation.

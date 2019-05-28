@@ -105,3 +105,5 @@ function Downwards(grid) {
         }
     }
 }
+
+// The biggest challenge for this problem working with the array indexes

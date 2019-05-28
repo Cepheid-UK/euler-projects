@@ -48,3 +48,6 @@ for (i=0; i<987; i++) {
 }
 
 console.log(largestNumber)
+
+// this is just string manipulation, but I think there could be a more procedural mathematical way to solve this with arrays or matricies
+// if I spent some time on it, similar to the way problem 11 is solved.

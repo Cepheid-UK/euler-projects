@@ -41,7 +41,7 @@ console.log(primes[10000])
 // It generates an array of primes up to 1,000,000 (about 74,000 primes) 
 // then I just take the 10000th index of the array.
 
-// it creates an array of size = to limit, fills it with "true"
+// it creates an array of size = limit, fills it with "true"
 // then it iterates through the values and replaces the "true" with "false" where there are factors
 
 // then just take the index of the array for the value

@@ -48,7 +48,6 @@ function TriangleNumbers () {
         // 1,2,4,8,16,31,62,124,248,496
 
         for (j=0; j<primeFactors.length; j++) {
-            var prime = primeFactors[j]
             if (primeFactors[j] == primeFactors[j+1]) {
                 exponent++
             } else {
@@ -59,7 +58,6 @@ function TriangleNumbers () {
     
         var divisors = 1;
     
-        // multiply all the (exponents + 1) together
         for (k=0; k<exponentsArray.length; k++) {
             divisors = divisors * exponentsArray[k];
         }

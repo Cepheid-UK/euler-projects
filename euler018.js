@@ -39,13 +39,12 @@ for(i in triangle) {
 
 for (i=triangle.length-2; i>=0; i--) {
     for (j=0; j<=triangle[i].length-1; j++) {
-        console.log('line: ' + triangle[i].length + ' / index: ' + (j+1))
         var value = triangle[i][j] + Math.max(triangle[i+1][j],triangle[i+1][j+1])
-        console.log(triangle[i][j] + ' + ' + 'max(' + triangle[i+1][j] + ',' + triangle[i+1][j+1] + ') = ' + value)
+        triangle[i][j] = value;
     }
 }
 
-console.log(triangle)
+console.log(triangle[0][0])
 
 // Since this problem mentions another, which can have a common solution, I decided to figure out an algorithm that works for both.
 // I used this one: https://www.youtube.com/watch?v=6zcFB1nIoq8

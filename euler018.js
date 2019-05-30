@@ -27,9 +27,29 @@
 
 // NOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)
 
-var triangle = [];
+var fs = require('fs');
+var triangle = fs.readFileSync('euler018.txt').toString().split("\n");
 
-// Since this problem mentions another, which can be solved simultaneously, I decided to figure out an algorithm that works for both.
+for(i in triangle) {
+    triangle[i] = triangle[i].match(/\d{2}/g)
+    for (j in triangle[i]) {
+        triangle[i][j] = parseInt(triangle[i][j]) // not entirely necessary in JS, but tidier.
+    }
+}
+
+for (i=triangle.length-2; i>=0; i--) {
+    for (j=0; j<=triangle[i].length-1; j++) {
+        console.log('line: ' + triangle[i].length + ' / index: ' + (j+1))
+        var value = triangle[i][j] + Math.max(triangle[i+1][j],triangle[i+1][j+1])
+        console.log(triangle[i][j] + ' + ' + 'max(' + triangle[i+1][j] + ',' + triangle[i+1][j+1] + ') = ' + value)
+    }
+}
+
+console.log(triangle)
+
+// Since this problem mentions another, which can have a common solution, I decided to figure out an algorithm that works for both.
 // I used this one: https://www.youtube.com/watch?v=6zcFB1nIoq8
-// The idea is to take the values on the 2nd row, and check both the values below it, and add the largest of the two to the value,
-// recording the index arrays as you go. (I realised myself you can do this is binary, with left = 0, right = 1)
+// The idea is to take the values on the 2nd row, and check both the values below it, and add the largest of the two to the value.
+// continue to do this all the way to the top, and the final value is the largest sum.
+
+// If you want to track the path, you can use a binary number, where 0 represents taking the left number, and 1 represents the right.

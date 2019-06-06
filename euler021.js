@@ -5,26 +5,23 @@
 
 // Evaluate the sum of all the amicable numbers under 10000.
 
+var limit = 10000
+var total = 0;
+
 var properDivisorsArray = []
 
-for (k=1; k<10000; k++) {
-    dn = SumOfProperDivisors(Divisors(k))
-    properDivisorsArray.push(dn)
+for (k=1; k<limit; k++) {
+    var sum = SumOfProperDivisors(Divisors(k))
+    if (sum != k) {
+        var dSum = SumOfProperDivisors(Divisors(sum))
+        if (k==dSum) {
+            console.log('Amiacble numbers found: ' + k + ' / ' + sum)
+            total += sum;
+        }
+    }
 }
 
-// for (m=0; m<properDivisorsArray.length; m++) {
-//     for (n=0; n<properDivisorsArray.length; n++) {
-//         if (properDivisorsArray[m] == n) {
-//             // console.log('amicable numbers found at: ' + n + ' and d(' + m + ')')
-//         }
-//     }
-    
-// }
-
-// 5913 and 9998 amicable?
-
-console.log(Divisors(5913))
-console.log(SumOfProperDivisors(Divisors(9998)))
+console.log(total)
 
 function SumOfProperDivisors(divisors) {
     // d(Divisors(n))
@@ -32,7 +29,6 @@ function SumOfProperDivisors(divisors) {
     for (i=0; i<divisors.length-1; i++) {
         total += divisors[i]
     }
-
     return total;
 }
 
@@ -59,3 +55,6 @@ function Divisors(n) {
 
     return divisors;
 }
+
+// Took me a little while to get my head around the solution code, I checked online to see what algorithms might be good for this
+// and seeing other implementations exposed the bug I had, and it worked instantly.

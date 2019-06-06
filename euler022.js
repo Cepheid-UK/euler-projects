@@ -14,12 +14,10 @@ fs.readFile('euler022.txt', 'utf8', (err, data) => {
 })
 
 function handleNames(string) {
-    let regex = /[A-Z]*[^","]/g // take all A-Z characters that are grouped, ignore ","
+    let regex = /[A-Z]*[^","]/g // take all A-Z characters that are grouped, ignore: ","
 
-    // all the names now as string elements in an array:
     var names = (string.match(regex))
     names.sort()
-    console.log(names)
 
     var total = 0;
 
@@ -33,3 +31,5 @@ function handleNames(string) {
     
     console.log(total)
 }
+
+// array.sort() is the hero of this problem. Would have been quite annoying to sort alphabetically without it.

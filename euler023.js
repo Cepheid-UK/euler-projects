@@ -7,29 +7,40 @@
 // Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
 
 var abundants = []
+var total = 0;
 
+// creates an array of all abundant numbers 1 to 28123
 for (k=1; k<=28123; k++) {
-    // all abundant numbers from 1 to 28123
     var isPerfect = IsPerfect(k)
     if (isPerfect === 'abundant') {
         abundants.push(k)
     }
 }
 
+// creates an array full of 'false'
 var sumOfAbundants = new Array(28123)
 sumOfAbundants.fill(false)
 
 var total = 0;
 
+// to sum two numbers, we need to iterate through the array twice (2x for loops) then add together the values
+// if a number is a sum of two abundants, it becomes a 'true' in the array.
 for (l=0; l<abundants.length; l++) {
     for (m=0; m<abundants.length; m++) {
-        if (abundants[i] + abundants[j] < 28124) {
-            sumOfAbundants[abundants[i]+abundants[j]] = true;
+        if (abundants[l] + abundants[m] <= 28123) {
+            sumOfAbundants[abundants[l]+abundants[m]] = true;
         }
     }
 }
 
-console.log(sumOfAbundants)
+// sum the index of all 'false' in the array
+for (x=0; x<sumOfAbundants.length; x++) {
+    if (!sumOfAbundants[x]) {
+        total += x
+    }
+}
+
+console.log(total)
 
 function IsPerfect(n) { // returns 'perfect' if perfect, 'abundant' if abundant and 'deficient' if deficient.
     var properDivisors = Divisors(n)
@@ -66,3 +77,5 @@ function Divisors(n) { // from problem 21
 
     return divisors;
 }
+
+// A record 7 for loops in this result. There is probably a slightly more efficient way to structure this code, but this works nicely.

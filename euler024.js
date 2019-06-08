@@ -4,46 +4,56 @@
 
 // What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
 
-var permutations = []
-var string = ''
-var target = 3 // the number of lexicographical permutations to calculate
+var permutations = [];
+var string = '0123456789';
+var limit = 1000000; // 1 million
+var kValue;
+var lValue;
 
-LexPerm(9, target)
-console.log(permutations[target])
+permutations.push(string)
 
-function LexPerm(n, target) {
+for (i=0; i<=limit; i++) {
 
-    for (i=0; i<=n; i++) {
-        if (i===0) {
-            var string = '0'
-        } else {
-            string = (string + i).toString();
-        } 
+// 1) Find the largest index k such that a[k] < a[k + 1]. If no such index exists, the permutation is the last permutation.
+// 2) Find the largest index l greater than k such that a[k] < a[l].
+// 3) Swap the value of a[k] with that of a[l].
+// 4) Reverse the sequence from a[k + 1] up to and including the final element a[n].
+
+    string = string.toString().split('');
+
+    var last = string.length;
+    var k = last-1;
+
+    while(string[k-1] >= string[k]) {
+        k = k-1; 
     }
 
-    // first permutation, e.g. 012345 -> n
-    //permutations.push(string)
+    var l = last;
 
-    var permutationNumber = 0;
-    
-    for (j=0; j<target; j++) {
-        string = string.split('')
-        console.log(string)
-
-        for (k=0; k<permutationNumber; k++) {
-            var tempSplice = string.splice(string.length-permutationNumber,1)
-            string.splice(string.length-permutationNumber,0,tempSplice)
-        }
-
-
-
-        // for (k=string.length; k>)
-
-        string = string.join('')
-        permutations.push(string)
-
-        permutationNumber++
+    while(string[l-1] <= string[k-1]) {
+        l = l-1;
     }
+
+    string = swap(k-1,l-1,string)
+
+    k++
+    l = last
+
+    while (k < l) {
+        swap(k-1,l-1,string)
+        k++
+        l--
+    }
+
+    string = string.join('')
+    permutations.push(string)
 }
 
-console.log(permutations)
+console.log(permutations[limit-1])
+
+function swap(i,j,array) {
+    let temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+    return array;
+}

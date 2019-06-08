@@ -57,3 +57,9 @@ function swap(i,j,array) {
     array[j] = temp;
     return array;
 }
+
+// For this problem, I was quickly able to understand the algorithm that can solve it,
+// but was struggling with the implementation a little. Shifting values around arrays gets complicated quickly.
+
+// There's also an algorithm based on combinatorics that solves the values left-to-right with factorials.
+// if there's another problem like this one, I'll give that a try.
